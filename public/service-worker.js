@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.fa9526b28610692d3dc5c1974e9b5119.js"
+  "/precache-manifest.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "gratitude_v3"});
