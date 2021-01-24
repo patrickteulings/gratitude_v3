@@ -15,10 +15,9 @@ module.exports = {
       backgroundColor: '#0F343C'
     },
     workboxPluginMode: 'GenerateSW',
-    // workboxOptions: {
-    //   swSrc: 'public/service-worker.js',
-    //   exclude: 'public/_redirects'
-    // },
+    workboxOptions: {
+      exclude: 'public/_redirects'
+    },
     manifestCrossorigin: 'anonymous'
   },
 
