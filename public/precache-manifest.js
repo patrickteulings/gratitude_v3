@@ -1,9 +1,5 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b4f708d02ba30176b5f0c1cc7d008d87",
-    "url": "/_redirects"
-  },
-  {
     "revision": "9fc3c12aca2fc654c9a291a0c3f69fef",
     "url": "/assets/icons/feather/activity.svg"
   },
