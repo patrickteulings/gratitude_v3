@@ -14,11 +14,11 @@ module.exports = {
       themeColor: '182C34',
       backgroundColor: '#0F343C'
     },
-    workboxPluginMode: 'InjectManifest',
-    workboxOptions: {
-      swSrc: 'public/service-worker.js',
-      exclude: 'public/_redirects'
-    },
+    workboxPluginMode: 'GenerateSW',
+    // workboxOptions: {
+    //   swSrc: 'public/service-worker.js',
+    //   exclude: 'public/_redirects'
+    // },
     manifestCrossorigin: 'anonymous'
   },
 
