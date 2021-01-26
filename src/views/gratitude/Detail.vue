@@ -25,7 +25,7 @@
 
 <script lang="ts">
 // Core
-import { reactive, toRefs, defineComponent, computed, onMounted, watch } from 'vue'
+import { reactive, toRefs, defineComponent, computed, watch } from 'vue'
 import router from '@/router'
 import store from '@/store'
 import { useScroll } from '@/use/useScroll'
@@ -64,11 +64,12 @@ export default defineComponent({
       scroll: useScroll()
     })
 
-    const getGratitude = computed(() => {
-      state.originalGratitude = store.getters['gratitudeStore/getGratitudes'].find(item => item.id === router.currentRoute.value.params.id)
+    const getGratitude = () => {
+      const iets = store.getters['gratitudeStore/getGratitudes']
+      state.originalGratitude = iets.find(item => item.id === router.currentRoute.value.params.id)
       // return filtered || { data: { title: `It's called...`, body: 'gratitude' } }
       return (state.originalGratitude) ? state.originalGratitude : {}
-    })
+    }
 
     const getDate = (gratitude: IGratitude) => useDate().getDefaultFormat(gratitude.timeStamp.toDate())
 
