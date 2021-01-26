@@ -64,12 +64,13 @@ export default defineComponent({
       scroll: useScroll()
     })
 
-    const getGratitude = () => {
+    const getGratitude = computed(() => {
       const iets = store.getters['gratitudeStore/getGratitudes']
+      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
       state.originalGratitude = iets.find(item => item.id === router.currentRoute.value.params.id)
       // return filtered || { data: { title: `It's called...`, body: 'gratitude' } }
       return (state.originalGratitude) ? state.originalGratitude : {}
-    }
+    })
 
     const getDate = (gratitude: IGratitude) => useDate().getDefaultFormat(gratitude.timeStamp.toDate())
 

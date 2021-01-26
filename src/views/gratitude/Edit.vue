@@ -107,12 +107,13 @@ export default defineComponent({
     let editedBody = ''
     let editedMood: IMood
 
-    const getGratitude = () => {
+    const getGratitude = computed(() => {
       const filtered = store.getters['gratitudeStore/getGratitudes'].find(item => item.id === router.currentRoute.value.params.id)
+      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
       state.originalGratitude = Object.assign({}, filtered)
 
       return filtered.data
-    }
+    })
 
     const getDate = (gratitude: IGratitude) => {
       return useDate().getDefaultFormat(gratitude.timeStamp.toDate())
