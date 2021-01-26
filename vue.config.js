@@ -16,7 +16,7 @@ module.exports = {
     },
     workboxPluginMode: 'GenerateSW',
     workboxOptions: {
-      exclude: 'public/_redirects'
+      exclude: '_redirects'
     },
     manifestCrossorigin: 'anonymous'
   },
