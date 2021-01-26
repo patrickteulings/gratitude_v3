@@ -73,17 +73,17 @@ export default defineComponent({
   setup () {
     const menuOpen = ref<boolean>(false)
     const user = computed(() => store.getters['userStore/getUser'])
-    // const bodyElement = document.getElementsByTagName('body')[0]
+    const bodyElement = document.getElementsByTagName('body')[0]
     const appRoute = reactive(useRoute())
     const fullMenu = ref(true)
 
     const openMenu = (): void => {
-      // bodyElement.style.overflow = 'hidden'
+      bodyElement.style.overflow = 'hidden'
       menuOpen.value = true
     }
 
     const closeMenu = (): void => {
-      // bodyElement.style.overflow = 'auto'
+      bodyElement.style.overflow = 'auto'
       menuOpen.value = false
     }
 

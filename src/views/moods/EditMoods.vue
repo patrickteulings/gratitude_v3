@@ -37,11 +37,11 @@ export default defineComponent({
     })
 
     onMounted(() => {
-      // document.body.classList.add('pampas')
+      document.body.classList.add('pampas')
     })
 
     onBeforeUnmount(() => {
-    // document.body.classList.remove('pampas')
+      document.body.classList.remove('pampas')
     })
 
     return {
