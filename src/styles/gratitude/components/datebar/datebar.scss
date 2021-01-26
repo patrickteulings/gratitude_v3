@@ -1,0 +1,114 @@
+.datebar {
+  display: flex;
+  justify-content: space-between;
+  $dateButtonSize: 24px;
+  @include innerspace(1rem);
+
+  &__inner {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  &__item {
+    @include position();
+    min-height: $dateButtonSize;
+    min-width: $dateButtonSize;
+    margin-right: 4px;
+
+    &:before {
+      content: "";
+      @include position(absolute);
+      @include size($dateButtonSize);
+      border-radius: 50%;
+      background-color: lighten(color('primary'), 100%);
+    }
+
+    &.hasNoEntry {
+      &:before {
+        background-color: rgba(255, 255, 255, 0.8);
+      }
+
+      .datebar__icon--wrapper {
+        display: none;
+      }
+    }
+
+    &.future {
+      opacity: 0.3;
+    }
+
+    &.active {
+
+      &:before {
+        background-color: color('accent');
+      }
+      svg {
+        stroke: color('white');
+      }
+
+      .datebar__number {
+        color: color('white');
+      }
+    }
+
+    .datebar__number {
+      @include size($dateButtonSize);
+      @include position(absolute);
+      @include flex-center('horizontal');
+
+      z-index: 100;
+
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      align-content: center;
+
+      @include font-size(7px);
+      text-transform: uppercase;
+      font-family: $roboto;
+      font-weight: 500;
+      color: color('primary');
+
+      &--hidden-number {
+        @include hide-visually();
+      }
+
+      &__number {
+        // margin-top: 8px;
+      }
+
+      .datebar__number--number {
+        padding-top: 2px;
+        transition: all 0.5s;
+        @include fontsmoothing();
+        @include font-size(7px);
+      }
+
+      &.hasEntry {
+        background: color('olive');
+        border-radius: 50%;
+
+        .datebar__number--number {
+          color: color('secondary');
+        }
+
+        .datebar__icon--wrapper {
+          position: relative;
+          top: -1px;
+        }
+      }
+    }
+
+    &.future {
+
+    }
+  }
+
+  &__kebab {
+    @include size(24px);
+    background: rgba(color('white'), 16%);
+    border-radius: 50%;
+    @include flex-center('both');
+
+  }
+}

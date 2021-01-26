@@ -1,0 +1,10 @@
+.addGratitude {
+  &__date {
+    opacity: 0.6;
+    font-family: $heading-font-face-playfair;
+  }
+
+  .btn--secondary {
+    margin-left: 1rem;
+  }
+}

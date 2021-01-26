@@ -1,0 +1,78 @@
+.dropdown {
+  font-weight: 400;
+  position: relative;
+  font-family: $button-font-face;
+  font-weight: 300;
+  text-transform: uppercase;
+
+  &__trigger {
+    // border: 1px solid color('light');
+    background: lighten(color('primary'), 2%);
+    border-radius: 30px;
+    @include innerspace(1rem);
+    color: #FFFFFF;
+    @include font-size(14px);
+    cursor: pointer;
+
+    &.is-open {
+      border-bottom: 1px solid color('secondary');
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  &__chevron {
+    @include position(absolute, auto, 12px, 1rem, auto);
+    @include transition(all, 0.2s, $default-easing, 0.1s);
+    pointer-events: none;
+    transform-origin: 50% 50%;
+
+    &.is-open {
+      transform: rotate(180deg);
+    }
+
+    path {
+      stroke: color('white');
+    }
+  }
+
+  &__list {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    pointer-events: none;
+    border-radius: 3px;
+    background: #fff;
+    background: lighten(color('primary'), 90%);
+    transform: translate(0%, -80px);
+    @include card-shadow(1);
+    @include transition(transform, 0.1s);
+
+    &.is-open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(0, -100px);
+      height: auto;
+    }
+  }
+
+  &__item {
+    @include innerspace(0rem, 1rem);
+    @include outerspace(1rem, 0rem);
+    @include font-size(14px);
+    color: color('primary');
+
+    &.hidden {
+      display: none;
+    }
+    &:not(:last-child) {
+      // border-bottom: 1px solid lighten(color('light'), 50%);
+    }
+  }
+
+  &.ghosted {
+    opacity: 0.2;
+    filter: blur(4px);
+  }
+}
+

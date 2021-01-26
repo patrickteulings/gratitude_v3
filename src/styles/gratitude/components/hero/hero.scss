@@ -1,0 +1,16 @@
+.hero {
+  @include innerspace(1rem);
+  display: flex;
+  justify-content: flex-end;
+  text-align: right;
+
+  &__date {
+    font-family: $heading-font-face-playfair;
+    @include font-size(32px);
+    margin-bottom: 1rem;
+  }
+
+  &__weather {
+    font-weight: 400;
+  }
+}

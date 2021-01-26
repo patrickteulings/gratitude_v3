@@ -1,0 +1,65 @@
+.detail {
+
+  >.section {
+    padding: 0 24px;
+  }
+
+  .section__inner {
+    max-width: 768px;
+  }
+
+  &__title {
+    padding: 2rem 0;
+
+    h1 {
+      line-height: 3rem;
+      word-break: break-all;
+      line-height: 1.4em;
+      margin-bottom: 0;
+    }
+
+    &.section {
+      margin-top: 0;
+      padding-top: 16px;
+      padding-bottom: 16px;
+    }
+  }
+  &__body {
+    @include innerspace(0, 24px);
+    &.section {
+      margin-top: 0;
+    }
+
+    p {
+      line-height: 2rem;
+    }
+  }
+  &__meta {
+    font-family: $heading-font-face-playfair;
+    display: flex;
+    justify-content: space-between;
+
+    @include mq('desktop', 'min') {
+      @include innerspace(0, 0);
+    }
+
+    &.ghosted {
+      opacity: 0.2;
+      filter: blur(4px);
+    }
+
+    .weather {
+      opacity: 0.6;
+      text-align: right;
+      // font-family: $primary-font-face;
+      font-weight: 100;
+
+      i {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+}
+
+
+

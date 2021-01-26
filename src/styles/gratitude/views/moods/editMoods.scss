@@ -1,0 +1,111 @@
+.moods-edit {
+  background-color: color('pampas');
+
+  > section {
+    @include innerspace(0rem, 1.5rem);
+  }
+}
+
+body.pampas {
+  background-color: color('pampas');
+}
+
+
+/* ----------------------------------------
+  MOODS ITEM ROW
+---------------------------------------- */
+
+.moods-item {
+  @include innerspace(0.25rem, 0rem);
+
+  &__inner {
+    display: flex;
+  }
+
+  &__color {
+    @include size(32px);
+    min-width: 32px;
+  }
+
+  &__color-dot {
+    display: block;
+    @include size(1rem);
+    border-radius: 20px;
+    @include position(relative, auto, 4px);
+  }
+
+  &__label {
+    flex-grow: 2;
+    font-family: $heading-font-face-playfair;
+    text-transform: capitalize;
+    line-height: 2rem;
+    @include font-size(20px);
+    color: color('primary');
+
+    &:focus {
+      outline: none;
+      text-decoration: underline;
+    }
+  }
+}
+
+/* ----------------------------------------
+  DropDown with selectable colors
+---------------------------------------- */
+
+.moods-item-colors {
+  @include position;
+  z-index: 2;
+  display: inline-flex;
+  margin-left: -1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  background: color('white');
+  border-radius: 5px;
+  overflow: hidden;
+  height: 0px;
+  max-height: 0px;
+  @include transition();
+  @include card-shadow(3);
+
+  &.open {
+    @include innerspace(1rem);
+    height: 48px;
+    max-height: 80px;
+  }
+
+  &__item {
+    @include size(1rem);
+    margin-right: 1rem;
+    border-radius: 1rem;
+    @include transition();
+
+    &:last-child{
+      margin-right: 0;
+    }
+  }
+}
+
+/* ----------------------------------------
+  iLLustratIOn at bottom of page
+---------------------------------------- */
+
+.moods-edit-illustration{
+  @include position(fixed, 0, auto, 0, -5px);
+
+  .mountain-back {
+    @include position(absolute, 0, auto, auto, 0);
+  }
+
+  .mountain-left {
+    @include position(absolute, 0, auto, auto, 0);
+  }
+
+  .plant {
+    @include position(absolute, 30%, auto, auto, 0);
+  }
+
+  .mountain-right {
+    @include position(absolute, auto, auto, 0, 0);
+  }
+}

@@ -1,0 +1,224 @@
+$custom-ease-out: cubic-bezier(.07,.8,.13,1);
+$menuWidth: 300px;
+
+.navigationDrawer {
+  background: color('white');
+  @include size($menuWidth, 100vh);
+  @include position(absolute);
+  transform: translateX(0);
+  transition: all 0.2s ease-out;
+  z-index: 300;
+
+  &.section {
+    margin-top: 0;
+  }
+
+  &.opened {
+    transition: all 0.3s $custom-ease-out;
+    transform: translateX(0);
+
+    .btn--hamburger {
+      display: none;
+    }
+  }
+
+  &.closed {
+    transition: all 0.1s $custom-ease-out;
+    transform: translateX(-300px);
+  }
+
+  .section__inner {
+    @include position;
+    background: #fff;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+  }
+
+  // Delete after done
+  button {
+    position: absolute;
+    right: -200px;
+  }
+
+  .btn--hamburger {
+    @include position(absolute, auto, 15px, -55px, auto);
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  // Profile
+  &__profile {
+    display: flex;
+    align-items: center;
+    color: color('primary');
+    font-family: $heading-font-face-playfair;
+    padding-top: 2.5rem;
+    padding-bottom: 3.5rem;
+
+    .avatar {
+      background: none;
+
+      &:before {
+        border: 1px solid color('primary');
+        left: auto;
+        top: auto;
+      }
+    }
+  }
+
+
+  // Underlay / Overlay to close menu
+  &__underlay {
+    @include position(absolute, 0, 0);
+    @include size(0vw, 100vh);
+    @include transition(opacity);
+    transform: translateX($menuWidth);
+    opacity: 0;
+    background: color('primary');
+    z-index: 1;
+  }
+
+  &.opened {
+    .navigationDrawer__underlay {
+      @include size(calc(100vw - #{$menuWidth}), 100vh);
+      opacity: 0.8;
+    }
+  }
+}
+
+/* ----------------------------------------
+  Menu Items and List
+---------------------------------------- */
+
+.navigation {
+  @include position;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+  padding-left: 1rem;
+  display: flex;
+
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  &__item {
+    color: color('menu');
+    font-family: $button-font-face;
+    font-weight: 500;
+    text-transform: uppercase;
+    @include font-size(14px);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  &__link {
+    text-decoration: none;
+    font-weight: 500;
+    color: color('menu');
+    margin-left: 0.5rem;
+  }
+
+  &__icon {
+    svg {
+    stroke: #BAC8CA;
+    }
+
+    &.icon-sun{
+        svg {
+          stroke: darken(#BAC8CA, 20%);
+        }
+      }
+  }
+
+  &__item.add {
+    color: color('menu-accent');
+    @include outerspace(2rem, 0rem);
+    margin-left: -0.2rem;
+
+    .navigation__link {
+      color: color('menu-accent');
+      @include font-size(16px);
+    }
+
+    .navigation__icon {
+      svg {
+        stroke: color('menu-accent');
+      }
+    }
+  }
+
+  &__item.last {
+    flex-grow: 2;
+    display: flex;
+    align-items: flex-end;
+
+    .navigation__link {
+      @include font-size(10px);
+    }
+
+    .spacer {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+/* ----------------------------------------
+  Profile in Navigation
+---------------------------------------- */
+
+.navigationDrawer__profile {
+  .profile {
+
+    &__information {
+      margin-left: 0.5rem;
+      margin-top: 0.2rem;
+    }
+
+    &__edit {
+      margin-top: 1rem;
+      color: #9C9C9C;
+      font-family: $sans-font-face;
+      @include font-size(12px);
+    }
+  }
+}
+
+/* ----------------------------------------
+  ILLUSTRATION
+---------------------------------------- */
+
+.navigationDrawer__illustration {
+  @include position;
+  height: 100px;
+  background: rgba(color('menu-accent'), 0.1);
+  width: calc(100% + 4rem);
+  margin-left: -2rem;
+  margin-bottom: -1rem;
+
+  .illustration-mountain-left {
+    @include position(absolute, 0px, auto, auto, 0px);
+    z-index: 3;
+  }
+
+  .illustration-mountain-right {
+    @include position(absolute, auto, auto, 0px, 0px);
+    z-index: 1;
+  }
+
+  .illustration-tree {
+    @include position(absolute, 50%, auto, auto, -60px);
+    margin-left: -25%;
+    z-index: 2;
+  }
+
+}

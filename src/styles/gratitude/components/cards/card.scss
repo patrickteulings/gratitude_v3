@@ -1,0 +1,80 @@
+.gratitudeCard {
+  @include outerspace(0.5rem, 1rem);
+  color: color('primary');
+
+  &__inner {
+    @include innerspace(2rem, 1rem);
+    padding-bottom: 0.5rem;
+    background: color('white');
+    border-radius: 5px;
+    position: relative;
+
+    &.hasHabits {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  &__habits {
+    @include innerspace(2rem, 1rem);
+    padding-bottom: 0.5rem;
+    background: rgba(color('white'), 70%);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  &__body {
+    @extend .paragraph;
+
+    // We need to make font-styles explicit for every font-style as these HTML tags are
+    // added on the fly to our contenteditable field and not rerendered (apparently)
+
+    b {
+      font-weight: 700;
+    }
+
+    i {
+      font-style: italic;
+    }
+  }
+
+  &__title {
+    color: color('primary');
+    @include font-size(40px);
+    word-break: break-all;
+    line-height: 1.4em;
+  }
+
+  &__body {
+    color: color('primary');
+  }
+
+  &__tags {
+    margin-bottom: 1rem;
+  }
+
+  .date {
+    display: flex;
+    justify-content: space-between;
+    @include position(relative, 0, -0.5rem);
+    margin-bottom: 0.5rem;
+    @include font-size(10px);
+    font-weight: bold;
+    color: #75898B;
+    font-family: $primary-font-face;
+    font-weight: 700;
+
+    &__mood {
+      @include size(8px);
+      border-radius: 6px;
+      display: inline-block;
+      background-color: #999;
+      margin-right: 8px;
+    }
+
+    .mood__weather {
+      text-align: right;
+      flex-grow: 2;
+    }
+  }
+}

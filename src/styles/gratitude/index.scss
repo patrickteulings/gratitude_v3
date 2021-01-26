@@ -1,0 +1,51 @@
+
+$wi-path: '../assets/weather-icons';
+
+@import
+  'lib/weather/weather-icons', // https://erikflowers.github.io/weather-icons/1§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§
+
+  'components/header/header',
+  'components/navigation/navigationDrawer',
+  'components/navigation/sidebarmenu',
+  'components/navigation/topbar',
+  'components/cards/card',
+  'components/tags/tags',
+  'components/datebar/datebar',
+  'components/hero/hero',
+  'components/gratitude/gratitude',
+  'components/gratitude/addGratitude',
+  'components/gratitude/contenteditable',
+  'components/weather/weather',
+  'components/user/user',
+  'components/ui/forms',
+  'components/ui/dropdown',
+  'components/ui/buttons',
+  'components/ui/gooey',
+  'components/toasts/toasts',
+
+  'views/transitions',
+  'views/list/gratitudeGroup',
+  'views/list/list',
+  'views/home',
+  'views/login',
+  'views/add',
+  'views/edit',
+  'views/detail',
+  'views/moods/editMoods';
+
+html {
+
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  color: color('white');
+  font-family: $primary-font-face;
+  // overflow-x: hidden;
+  @include fontsmoothing();
+}
+
+body {
+  background-color: darken(#014B52, 5%);
+}

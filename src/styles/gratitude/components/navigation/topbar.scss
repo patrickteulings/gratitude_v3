@@ -1,0 +1,29 @@
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @include innerspace(1rem);
+  // background-color: darken(#014B52, 5%);
+}
+
+.topBarEdit {
+  @include innerspace(1rem);
+  display: flex;
+  align-items: center;
+
+  &__title {
+    flex-grow: 2;
+
+    h2 {
+      font-family: $heading-font-face-playfair;
+      color: color('primary');
+      @include font-size(24px);
+      text-align: center;
+      margin: 0;
+    }
+  }
+
+  &__back {
+    cursor: pointer;
+  }
+}

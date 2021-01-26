@@ -1,0 +1,101 @@
+/* ----------------------------------------
+  Our primary colors for this project
+---------------------------------------- */
+
+$primary-colors: (
+  'base': #000000,
+  'primary': #013439, //#D996C7, //#429DA8,
+  'secondary': #0F0F21,
+  'tertiary': #CFB495,
+  'quaternairy': #F5CDAA,
+  'warning': rgb(255, 255, 0),
+  'accent': #D996C7,
+  'action': #E8486F,
+  'positive': #C6C150,
+  'white': #ffffff,
+  'black': #111111,
+  'light': #C4C4C4,
+  'olive': #C6C150,
+  'menu': #547276,
+  'menu-accent': #A7A233,
+  'pampas': #F0EDE5
+
+  // https://colorhunt.co/palette/167311
+);
+
+/* ----------------------------------------
+  Combinations for loop for theming
+  Beware, name must also be declared in $themes
+
+  Usage: color: colorcombi(warning, background)
+
+  If you need to include both colors in a field, use
+  the mixin @themecombi('warning');
+---------------------------------------- */
+
+$color-combinations: (
+  'base': (
+    'background': map-get($primary-colors, 'primary'),
+    'color': map-get($primary-colors, 'white')
+  ),
+  'primary': (
+    'background': map-get($primary-colors, 'primary'),
+    'color': map-get($primary-colors, 'white'),
+  ),
+  'secondary': (
+    'background': map-get($primary-colors, 'secondary'),
+    'color': map-get($primary-colors, 'white'),
+  ),
+  'warning': (
+    'background': map-get($primary-colors, 'warning'),
+    'color': map-get($primary-colors, 'white'),
+  ),
+  'light': (
+    'background': map-get($primary-colors, 'light'),
+    'color': map-get($primary-colors, 'black'),
+  ),
+  'black': (
+    'background': map-get($primary-colors, 'black'),
+    'color': map-get($primary-colors, 'white'),
+  ),
+  'white': (
+    'background': map-get($primary-colors, 'white'),
+    'color': map-get($primary-colors, 'black'),
+  ),
+  'tertiary': (
+    'background': map-get($primary-colors, 'tertiary'),
+    'color': map-get($primary-colors, 'black'),
+  ),
+  'quaternairy': (
+    'background': map-get($primary-colors, 'quaternairy'),
+    'color': map-get($primary-colors, 'black'),
+  ),
+  'accent': (
+    'background': map-get($primary-colors, 'accent'),
+    'color': map-get($primary-colors, 'black'),
+  ),
+  'action': (
+    'background': map-get($primary-colors, 'action'),
+    'color': map-get($primary-colors, 'black'),
+  ),
+  'positive': (
+    'background': map-get($primary-colors, 'positive'),
+    'color': map-get($primary-colors, 'black'),
+  ),
+  'olive': (
+    'background': map-get($primary-colors, 'olive'),
+    'color': map-get($primary-colors, 'white'),
+  ),
+  'menu': (
+    'background': map-get($primary-colors, 'menu'),
+    'color': map-get($primary-colors, 'white'),
+  ),
+  'menu-accent': (
+    'background': map-get($primary-colors, 'menu'),
+    'color': map-get($primary-colors, 'white'),
+  ),
+  'pampas': (
+    'background': map-get($primary-colors, 'pampas'),
+    'color': map-get($primary-colors, 'primary'),
+  )
+);

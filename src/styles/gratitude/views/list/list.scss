@@ -1,0 +1,28 @@
+.listWrapper {
+  background: #F4F4F4;
+  @include innerspace(2rem);
+
+  &__loading {
+    width: 100vw;
+    height: 50vh;
+    @include flex-center('both');
+
+    .spinner-wrapper {
+      transform: translate(-20px, -20px);
+    }
+  }
+}
+
+.gratitude-group {
+  margin-bottom: 2rem;
+
+  &__date {
+    font-family: $handwriting-font-face;
+    // background: color('secondary');
+    color: color('secondary');
+    font-size: 24px;
+    padding: 1rem 0;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+  }
+}

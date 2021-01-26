@@ -1,0 +1,98 @@
+.btn {
+  @include transition();
+  @include flex-center('both');
+  @include transition();
+  @include innerspace(0.8rem, 1.2rem);
+  font-family: $button-font-face;
+  text-transform: uppercase;
+  font-weight: 300;
+
+  border: 0;
+  appearance: none;
+  background: lighten(color('primary'), 10%);
+  color: color('white');
+  border-radius: 20px;
+
+  // @include transition(padding);
+
+  &--secondary {
+    background-color: darken(#014B52, 2%);
+  }
+
+  &--round {
+    @include size(64px);
+    @include innerspace(24px);
+    @include transition();
+    background: color('white');
+    color: color('action');
+    font-weight: 600;
+    line-height: 0;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  &--round-small {
+    @include innerspace(20px);
+    @include size(24px);
+
+    svg {
+      @include size(16px);
+    }
+  }
+
+  &.isSubmitting {
+    @include innerspace(0.8rem, 0.95rem);
+    border-radius: 100%;
+  }
+
+  .gratitude-icon {
+    fill: color('action');
+  }
+
+  &--delete {
+    display: block;
+    color: color('white');
+    background: darken(color('primary'), 2%);
+
+    &.confirm {
+      background: color('accent');
+    }
+  }
+
+  &--hamburger {
+    @include size(40px);
+    background: none;
+
+    span {
+      @include position(absolute, 5px, 8px);
+      background: color('white');
+      display: inline-block;
+      width: calc(100% - 16px);
+      height: 1px;
+
+      &:nth-child(1) {
+        top: 16px;
+        width: calc(80% - 16px);
+      }
+      &:nth-child(2) {
+        top: 24px;
+        width: calc(90% - 16px);
+      }
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  .spinner {
+    .path {
+      stroke: #FFF;
+    }
+  }
+}
+

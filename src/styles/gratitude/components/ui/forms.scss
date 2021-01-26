@@ -1,0 +1,60 @@
+.inputWrapper {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+label {
+  color: #1F1F1C;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+input[type="text"] {
+  border: 1px solid #1F1F1C;
+  border-radius: 2px;
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+.contenteditable {
+  @include transition(all, 0.3s);
+}
+
+
+.customTextarea {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  height: auto;
+  resize: none;
+  @include transition(all, 0.3s);
+  word-wrap: break-word;
+  @include innerspace(1rem);
+  margin-left: -1rem;
+  margin-top: -1rem;
+  margin-right: -1rem;
+  width: calc(100% + 2rem);
+  @include position();
+
+  &:focus {
+    outline: none;
+  }
+
+  &--title {
+    font-family: $heading-font-face;
+    @include font-size(48px);
+    line-height: 64px;
+  }
+
+  &--body {
+    font-family: $primary-font-face;
+    @include font-size(16px);
+    color: color('secondary');
+    opacity: 0.87;
+    line-height: 26px;
+  }
+
+  .isActive & {
+    background: lighten(color('light'), 90%);
+  }
+}

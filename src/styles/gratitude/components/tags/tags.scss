@@ -1,0 +1,11 @@
+.tag {
+  color: darken(#37787C, 100%);
+  background: #E8EDED;
+  text-transform: uppercase;
+  @include font-size(8px);
+  font-weight: 500;
+  display: inline;
+  @include innerspace(0.25rem, 0.5rem);
+  font-family: $heading-font-face-playfair;
+  border-radius: 3px;
+}

@@ -1,0 +1,49 @@
+
+$avatar-default: 40px;
+$avatar-medium: 32px;
+$avatar-small: 16px;
+
+$avatar-sizes: (
+  "default": 40px,
+  "medium": 32px,
+  "small": 16px
+);
+
+
+@mixin avatar ($size: 'default') {
+  $avatarSize: map-get($avatar-sizes, $size);
+
+  @include position();
+  @include size(calc(#{$avatarSize} + 12px));
+  @include flex-center('both');
+
+  background: color('primary');
+  overflow: hidden;
+  cursor: pointer;
+
+  img {
+    @include size($avatarSize);
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  &:before {
+    @include position(absolute);
+    @include size(calc(#{$avatarSize} + 6px));
+    border-radius: 50%;
+    border: 3px solid rgba(#fff, 0.8);
+    content: '';
+  }
+}
+
+.avatar {
+  @include avatar();
+
+  &--medium {
+    @include avatar('medium');
+  }
+
+  &--small {
+    @include avatar('small');
+  }
+}

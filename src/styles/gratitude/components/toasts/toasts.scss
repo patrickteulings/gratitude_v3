@@ -1,0 +1,9 @@
+.monthAgo {
+  @include innerspace(1rem);
+
+  &__inner {
+    @include innerspace(1rem);
+    background: lighten(color('primary'), 20%);
+    border-radius: 3px;
+  }
+}

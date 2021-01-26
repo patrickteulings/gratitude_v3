@@ -1,0 +1,14 @@
+.edit {
+  &__actions {
+    .section__inner {
+      display: flex;
+      justify-content: center;
+      .btn {
+        flex: 0 1 auto;
+        &--delete {
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
+}
