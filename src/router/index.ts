@@ -5,6 +5,8 @@ import Detail from '../views/gratitude/Detail.vue'
 import Edit from '../views/gratitude/Edit.vue'
 import addGratitude from '../views/gratitude/AddGratitude.vue'
 import editMoods from '@/views/moods/EditMoods.vue'
+import Habits from '@/views/habits/Habits.vue'
+import Settings from '@/views/settings/Settings.vue'
 
 // eslint-disable-next-line
 const routes: any[] = [
@@ -40,6 +42,16 @@ const routes: any[] = [
     path: '/moods/edit',
     name: 'editMoods',
     component: editMoods
+  },
+  {
+    path: '/habits',
+    name: 'Habits',
+    component: Habits
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: Settings
   }
 ]
 

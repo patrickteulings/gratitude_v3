@@ -31,11 +31,11 @@
           </li>
           <li class="navigation__item">
             <span class="navigation__icon"><svg xmlns="http://www.w3.org/2000/svg" width=18 height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-toggle-left"><rect x="1" y="5" width="22" height="14" rx="7" ry="7"></rect><circle cx="8" cy="12" r="3"></circle></svg></span>
-            <a class="navigation__link" @click.prevent="navigateTo('/gratitude/habits')" href="/gratitude/habits">Habits</a>
+            <a class="navigation__link" @click.prevent="navigateTo('/habits')" href="/gratitude/habits">Habits</a>
           </li>
           <li class="navigation__item">
             <span class="navigation__icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></span>
-            <a class="navigation__link" @click.prevent="navigateTo('/gratitude/settings')" href="/gratitude/settings">Settings</a>
+            <a class="navigation__link" @click.prevent="navigateTo('/settings')" href="/gratitude/settings">Settings</a>
           </li>
           <li class="navigation__item add">
             <span class="navigation__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg></span>
@@ -67,6 +67,7 @@ import store from '@/store'
 
 // Composables
 import { useRoute } from '@/use/useRoute'
+import { useMenuState } from '@/use/useMenuState'
 
 export default defineComponent({
   name: 'NavigationDrawer',
@@ -97,13 +98,10 @@ export default defineComponent({
     }
 
     const handleRouteChange = (route) => {
-      if (route && route.name === 'editMoods') {
-        fullMenu.value = false
-      } else {
-        fullMenu.value = true
-      }
+      const obj = useMenuState(route)
+      console.log('USEMENUSTATE', obj)
 
-      console.log('handleRouteChange', fullMenu.value)
+      fullMenu.value = obj.fullMenu
     }
 
     watch(appRoute, (args) => {

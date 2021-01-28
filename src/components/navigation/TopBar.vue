@@ -20,7 +20,8 @@
 // Core
 import { defineComponent, computed, watch, reactive, toRefs } from 'vue'
 import store from '@/store'
-import router from '@/router'
+// import router from '@/router'
+import { useMenuState } from '@/use/useMenuState'
 
 // Interfaces
 
@@ -39,14 +40,11 @@ export default defineComponent({
     })
 
     const handleRouteChange = (route) => {
-      // appRoute = route
-      if (route && route.name === 'editMoods') {
-        state.fullMenu = false
-        state.topBarTitle = 'Moods'
-      } else {
-        state.fullMenu = true
-        state.topBarTitle = ''
-      }
+      const obj = useMenuState(route)
+      console.log('USEMENUSTATE', obj)
+
+      state.fullMenu = obj.fullMenu
+      state.topBarTitle = obj.topBarTitle
     }
 
     const handleBackButton = () => {
@@ -55,7 +53,7 @@ export default defineComponent({
 
     watch(state.appRoute, (args) => {
       console.log('watch', args.appRoute)
-      // const { path } = second
+
 
       handleRouteChange(args.appRoute)
     })
