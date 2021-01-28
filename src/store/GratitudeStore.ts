@@ -52,6 +52,11 @@ export const GratitudeStore = {
     },
 
     UPDATE_GRATITUDE: (state: any, payload: IGratitudeWrapper): void => {
+      // Now update local store
+      let el = state.gratitudes.find(item => item.id === payload.id)
+      console.log('HIER', el)
+      if (el) el = payload
+
       const userID = (payload.data && payload.data.user) ? payload.data.user.uid : ''
       const docRef = db.collection('users').doc(userID).collection('gratitudes').doc(payload.id)
       docRef.set(payload.data).then((result: any) => {

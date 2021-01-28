@@ -13,6 +13,11 @@
   color: color('white');
   border-radius: 20px;
 
+  &:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+
   // @include transition(padding);
 
   &--secondary {

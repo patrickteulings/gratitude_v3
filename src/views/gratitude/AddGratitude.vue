@@ -7,12 +7,12 @@
     </section>
     <section class="section addGratitude__title">
       <div class="section__inner">
-        <ContentEditable ref='titleElementRef' className="contenteditableHeader" @update-content="handleTitleUpdate" />
+        <ContentEditable ref='titleElementRef' className="contenteditableHeader" @update-content="handleTitleUpdate" @on-focus="handleContenFocus" />
       </div>
     </section>
     <section class="section addGratitude__body">
       <div class="section__inner">
-        <ContentEditable ref='bodyElementRef' className="contenteditableBody paragraph" @update-content="handleBodyUpdate" />
+        <ContentEditable ref='bodyElementRef' className="contenteditableBody paragraph" @update-content="handleBodyUpdate" @on-focus="handleContenFocus" />
       </div>
     </section>
     <section class="section addGratitude__dropdown">
@@ -22,10 +22,10 @@
     </section>
     <section class="section addGratitude__actions">
       <div class="section__inner">
-        <button class="btn" :class="{ 'isSubmitting': isSubmitting }" @click="submitNewGratitude()">
+        <button class="btn" :class="{ 'isSubmitting': isSubmitting }" @click="submitNewGratitude()" :disabled="isButtonDisabled">
           <span v-if="!submitted && !isSubmitting">Add Gratitude</span>
           <span v-else-if="submitted && !isSubmitting">Update Gratitude</span>
-          <div class="spinnerContainer" v-else>
+          <div v-else class="spinnerContainer">
             <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
               <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
             </svg>
@@ -65,6 +65,7 @@ interface IState {
   selectedMood: IMood | null;
   isSubmitting: boolean;
   submitted: boolean;
+  isButtonDisabled: boolean;
 }
 
 export default defineComponent({
@@ -81,7 +82,8 @@ export default defineComponent({
       body: '',
       selectedMood: null,
       isSubmitting: false,
-      submitted: false
+      submitted: false,
+      isButtonDisabled: false
     })
 
     const titleElementRef = ref(ContentEditable)
@@ -111,6 +113,7 @@ export default defineComponent({
     // @ TODO run update script instead of 'ADD' when
     const submitNewGratitude = () => {
       state.isSubmitting = true
+      state.isButtonDisabled = true
 
       const newGratitude: IGratitude = {
         title: state.title,
@@ -123,11 +126,12 @@ export default defineComponent({
         user: state.user
       }
 
-      // If Already submitted, update instead of adding new
+      // If Already submitted, UPDATE instead of adding new
       if (state.submitted === true) {
         state.submitted = false
 
         const wrapper: IGratitudeWrapper = { id: store.getters['gratitudeStore/getCurrentGratitude'].id, data: newGratitude }
+
         store.dispatch('gratitudeStore/updateGratitude', wrapper).then(() => {
           setTimeout(() => {
             state.isSubmitting = false
@@ -145,6 +149,11 @@ export default defineComponent({
           state.submitted = true
         }, 1900)
       })
+    }
+
+    const handleContenFocus = () => {
+      console.log('FOCUS')
+      state.isButtonDisabled = false
     }
 
     // Well, get the formatted date
@@ -166,6 +175,7 @@ export default defineComponent({
       handleTitleUpdate,
       handleBodyUpdate,
       handleMoodUpdate,
+      handleContenFocus,
       clearGratitude,
       titleElementRef,
       bodyElementRef

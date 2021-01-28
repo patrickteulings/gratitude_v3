@@ -19,33 +19,21 @@ const ContentEditable = defineComponent({
   setup (props, context: SetupContext) {
     const beasty = ref<string>('')
     const content = ref<string>('')
+
     const equalToPlaceHolder = ref<boolean>(true)
-    // const contentField = ref()
-    const contentField = ref()
 
     const contenteditableHeader = ref()
     const contenteditableBody = ref()
 
+    // Props
     const getClassname = () => {
       return props.className
     }
 
     // Handles focus, setting cursor position
     const handleFocus = (e: { target: HTMLInputElement }) => {
-      // const el: HTMLInputElement = e.target
-
-      // if (el.innerText !== beasty.value) return
-
-      // const setpos = document.createRange()
-      // const set = window.getSelection()
-
-      // setpos.setStart(el.childNodes[0], 0)
-      // setpos.collapse(true)
-
-      // if (set) set.removeAllRanges()
-      // if (set) set.addRange(setpos)
-
-      // el.focus()
+      const el: HTMLInputElement = e.target
+      context.emit('on-focus')
     }
 
     // You can call this from anywhere to reset all values
@@ -93,7 +81,6 @@ const ContentEditable = defineComponent({
       handleKeyDown,
       handleFocus,
       content,
-      contentField,
       contenteditableHeader,
       contenteditableBody,
       equalToPlaceHolder,
