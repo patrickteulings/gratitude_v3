@@ -26,7 +26,6 @@ const ContentEditable = defineComponent({
     const contenteditableHeader = ref()
     const contenteditableBody = ref()
 
-
     const getClassname = () => {
       return props.className
     }
@@ -51,15 +50,15 @@ const ContentEditable = defineComponent({
 
     // You can call this from anywhere to reset all values
     const resetView = () => {
-      const contenteditableFields = document.querySelectorAll('.contentEditableField')
+      // Props could add multiple classname, let's take the first one!
+      const firstClassName = props.className.split(' ')[0]
+      const contenteditableField: HTMLDivElement = document.querySelector(`.${firstClassName}`) as HTMLDivElement
 
       beasty.value = `It's called Gratitude`
 
-      for (const el of contenteditableFields) {
-        el[0].innerText = ''
-        el[0].innerText = beasty.value
-        equalToPlaceHolder.value = (el[0].innerText === beasty.value)
-      }
+      if (contenteditableField) contenteditableField.innerText = beasty.value
+
+      equalToPlaceHolder.value = (contenteditableField.innerText === beasty.value)
     }
 
     // Handles placeholder, deletes placeholder on keydown

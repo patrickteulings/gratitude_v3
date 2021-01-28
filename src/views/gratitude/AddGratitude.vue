@@ -84,8 +84,8 @@ export default defineComponent({
       submitted: false
     })
 
-    const titleElementRef = ref()
-    const bodyElementRef = ref()
+    const titleElementRef = ref(ContentEditable)
+    const bodyElementRef = ref(ContentEditable)
 
     // Handle emitted new Title text from ContentEditable
     const handleTitleUpdate = (content: string): void => {
@@ -139,7 +139,7 @@ export default defineComponent({
       }
 
       // Save to firebase
-      store.dispatch('gratitudeStore/saveGratitude', newGratitude).then((response) => {
+      store.dispatch('gratitudeStore/saveGratitude', newGratitude).then((response: any) => {
         setTimeout(() => {
           state.isSubmitting = false
           state.submitted = true

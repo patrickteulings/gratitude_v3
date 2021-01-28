@@ -5,12 +5,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted, onBeforeUnmount } from 'vue'
 
 export default defineComponent({
   name: 'Habits',
   setup () {
     console.log('habits')
+
+    onMounted(() => {
+      document.body.classList.add('pampas')
+    })
+
+    onBeforeUnmount(() => {
+      document.body.classList.remove('pampas')
+    })
 
     return {}
   }

@@ -2,11 +2,12 @@ module.exports = {
   // ...other vue-cli plugin options...
   pwa: {
     name: 'Gratitude',
-    themeColor: '#0F343C',
-    msTileColor: '#0F343C',
+    themeColor: '#013439',
+    msTileColor: '#013439',
     appleMobileWebAppCapable: 'yes',
-    appleMobileWebAppStatusBarStyle: '#0F343C',
+    appleMobileWebAppStatusBarStyle: '#013439',
     manifestOptions: {
+      title: 'It\'s called Gratitude',
       name: 'Gratitude',
       shortName: 'Grattitude',
       startUrl: '.',
@@ -14,7 +15,6 @@ module.exports = {
       themeColor: '182C34',
       backgroundColor: '#0F343C'
     },
-    workboxPluginMode: 'GenerateSW',
     workboxOptions: {
       exclude: '_redirects'
     },
