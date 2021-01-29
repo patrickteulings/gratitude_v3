@@ -108,11 +108,13 @@ export default defineComponent({
     let editedMood: IMood
 
     const getGratitude = computed(() => {
-      const filtered = store.getters['gratitudeStore/getGratitudes'].find(item => item.id === router.currentRoute.value.params.id)
+      const filteredItem = store.getters['gratitudeStore/getGratitudes'].find(item => item.id === router.currentRoute.value.params.id)
       // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-      state.originalGratitude = Object.assign({}, filtered)
+      state.originalGratitude = Object.assign({}, filteredItem)
 
-      return filtered.data
+      // See if element still exists here, could be deleted... Return an empty object?? Or a placeholder object?
+
+      return filteredItem.data
     })
 
     const getDate = (gratitude: IGratitude) => {

@@ -53,9 +53,10 @@ export const GratitudeStore = {
 
     UPDATE_GRATITUDE: (state: any, payload: IGratitudeWrapper): void => {
       // Now update local store
-      let el = state.gratitudes.find(item => item.id === payload.id)
-      console.log('HIER', el)
-      if (el) el = payload
+      const el = state.gratitudes.find(item => item.id === payload.id)
+      if (el) el.data.title = payload.data.title
+      if (el) el.data.body = payload.data.body
+      if (el) el.data.mood = payload.data.mood
 
       const userID = (payload.data && payload.data.user) ? payload.data.user.uid : ''
       const docRef = db.collection('users').doc(userID).collection('gratitudes').doc(payload.id)
@@ -119,6 +120,10 @@ export const GratitudeStore = {
     deleteGratitude: (context, gratitude: IGratitudeWrapper) => {
       const userID = (gratitude.data && gratitude.data.user) ? gratitude.data.user.uid : ''
       const ref = db.collection('users').doc(userID).collection('gratitudes').doc(gratitude.id)
+
+      const el = context.state.gratitudes.findIndex(item => item.id === gratitude.id)
+      context.state.gratitudes.splice(el, 1)
+
       return ref.delete()
     },
 
