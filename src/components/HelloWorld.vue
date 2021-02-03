@@ -18,12 +18,16 @@
       </section>
       <section class="section">
         <div class="section__inner">
-          <GratitudeCard style="position: relative; z-index: 2;" v-for="gratitude in filteredGratitudes" :key="gratitude.id" :gratitudeData="gratitude" @click="goToDetailPage(gratitude)" />
+          <div v-if="filteredGratitudes.length">
+            <GratitudeCard style="position: relative; z-index: 2;" v-for="gratitude in filteredGratitudes" :key="gratitude.id" :gratitudeData="gratitude" @click="goToDetailPage(gratitude)" />
+          </div>
+          <div v-else class="home__empty" style="text-align: center;">
+            <span class="empty__icon">🤷🏼‍♀️</span>
+          </div>
         </div>
       </section>
     </div>
-    <div v-if="filteredGratitudes.length">yes, gevonden
-    </div><div v-else>Not yet</div>
+
   </div>
 </template>
 

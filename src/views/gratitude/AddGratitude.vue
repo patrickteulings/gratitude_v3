@@ -2,7 +2,14 @@
   <div class="view addGratitude">
     <section class="section addGratitude__date">
       <div class="section__inner">
-        <div class="date">{{ getDate() }}</div>
+        <!-- <div class="detail__meta" v-if="getGratitude" :style="[getMood(getGratitude.data), parallax()]" style="color: #fff;">
+          adads
+          <span class="date">{{ getDate(getGratitude.data) }}</span><span class="weather" v-if="getWeather(getGratitude.data)">{{ getWeather(getGratitude.data).temp }}&deg;C <i :class="getWeather(getGratitude.data).icon"></i></span>
+        </div> -->
+        <div class="addGratitude__meta" :style="[parallax()]">
+          <span class="date">{{ getDate() }}</span>
+          <span class="weather" v-if="getWeather()">{{ getWeather().temp }}&deg;C <i :class="getWeather().icon"></i></span>
+        </div>
       </div>
     </section>
     <section class="section addGratitude__title">
@@ -47,6 +54,7 @@ import store from '@/store'
 
 // Composables
 import useDate from '@/use/useDate'
+import { useScroll } from '@/use/useScroll'
 
 // Components
 import ContentEditable from '@/components/contenteditable/Contenteditable.vue'
@@ -66,6 +74,8 @@ interface IState {
   isSubmitting: boolean;
   submitted: boolean;
   isButtonDisabled: boolean;
+  scrollY: number;
+
 }
 
 export default defineComponent({
@@ -83,7 +93,9 @@ export default defineComponent({
       selectedMood: null,
       isSubmitting: false,
       submitted: false,
-      isButtonDisabled: false
+      isButtonDisabled: false,
+      scrollY: 0,
+      scroll: useScroll()
     })
 
     const titleElementRef = ref(ContentEditable)
@@ -143,7 +155,7 @@ export default defineComponent({
       }
 
       // Save to firebase
-      store.dispatch('gratitudeStore/saveGratitude', newGratitude).then((response: any) => {
+      store.dispatch('gratitudeStore/saveGratitude', newGratitude).then(() => {
         setTimeout(() => {
           state.isSubmitting = false
           state.submitted = true
@@ -156,6 +168,19 @@ export default defineComponent({
       state.isButtonDisabled = false
     }
 
+    const parallax = () => {
+      return {
+        transform: `translateY(${(state.scrollY < 80) ? Math.round(state.scrollY / 2) : 40}px)`
+      }
+    }
+
+    const getWeather = () => {
+      console.log('-----------')
+      console.log(store.getters['gratitudeStore/getWeather'])
+      const weather = store.getters['gratitudeStore/getWeather']
+      //
+      return { temp: Math.round(weather.temp), icon: `wi wi-owm-${weather.weatherID}` }
+    }
     // Well, get the formatted date
     const getDate = (): string => useDate().getDefaultFormat(new Date())
 
@@ -176,9 +201,11 @@ export default defineComponent({
       handleBodyUpdate,
       handleMoodUpdate,
       handleContenFocus,
+      getWeather,
       clearGratitude,
       titleElementRef,
-      bodyElementRef
+      bodyElementRef,
+      parallax
     }
   }
 })

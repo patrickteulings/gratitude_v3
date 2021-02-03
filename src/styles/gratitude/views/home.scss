@@ -7,4 +7,16 @@
   .section__inner {
     padding: 0;
   }
+
+  &__empty {
+    @include flex-center('horizontal');
+    @include font-size(32px);
+
+    .empty__icon {
+      background: rgba(255,255,255,0.2);
+      border-radius: 64px;
+      @include size(64px);
+      @include flex-center('center');
+    }
+  }
 }
