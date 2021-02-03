@@ -10,6 +10,7 @@
     </div>
     <div class="moods-item-colors" :class="{ open: editColor }">
       <div v-for="color in colors" :key="color" class="moods-item-colors__item" :style="{backgroundColor: color}" @click="handleColorSelect(color)"></div>
+      <div class="moods-item-colors__underlay" @click="handleItemClick"></div>
     </div>
   </div>
 </template>
@@ -38,7 +39,6 @@ export default defineComponent({
     }
 
     const handleColorSelect = (color: string) => {
-      console.log(color)
       selectedColor.value = color
       mood.value = color
     }
