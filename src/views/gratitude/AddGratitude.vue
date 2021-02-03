@@ -164,7 +164,6 @@ export default defineComponent({
     }
 
     const handleContenFocus = () => {
-      console.log('FOCUS')
       state.isButtonDisabled = false
     }
 
@@ -175,8 +174,6 @@ export default defineComponent({
     }
 
     const getWeather = () => {
-      console.log('-----------')
-      console.log(store.getters['gratitudeStore/getWeather'])
       const weather = store.getters['gratitudeStore/getWeather']
       //
       return { temp: Math.round(weather.temp), icon: `wi wi-owm-${weather.weatherID}` }

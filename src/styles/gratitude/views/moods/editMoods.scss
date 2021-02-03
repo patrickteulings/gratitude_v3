@@ -19,19 +19,19 @@ body.pampas {
   @include innerspace(0.25rem, 0rem);
 
   &__inner {
-    display: flex;
+    @include flex-center('vertical');
   }
 
   &__color {
+    @include flex-center('vertical');
     @include size(32px);
-    min-width: 32px;
   }
 
   &__color-dot {
     display: block;
     @include size(1rem);
     border-radius: 20px;
-    @include position(relative, auto, 4px);
+    @include position(relative, auto);
   }
 
   &__label {

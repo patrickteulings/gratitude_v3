@@ -5,7 +5,7 @@
         <span class="moods-item__color-dot" :style="{backgroundColor: selectedColor}"></span>
       </div>
       <div class="moods-item__label" contenteditable="true" @keyup="handleLabelChange">
-        {{ mood.label }}
+        {{ label }}
       </div>
     </div>
     <div class="moods-item-colors" :class="{ open: editColor }">
@@ -28,6 +28,7 @@ export default defineComponent({
   },
   setup (props) {
     const mood: IMood = (props.moodData !== undefined) ? props.moodData : {}
+    const { label } = mood
     const editColor = ref(false)
     const colors = ['#013439', '#CFB495', '#547276', '#A7A233']
     const selectedColor = ref((props.moodData) ? props.moodData.value : '#DFA3CF')
@@ -43,14 +44,12 @@ export default defineComponent({
     }
 
     const handleLabelChange = (e: {target: HTMLDivElement}) => {
-      console.log('change', e, e.target)
-      const el: HTMLDivElement = e.target
-      console.log(el.innerHTML)
-      mood.label = el.innerText
+      mood.label = e.target.innerText
     }
 
     return {
       mood,
+      label,
       colors,
       selectedColor,
       editColor,
