@@ -1,7 +1,7 @@
 .datebar {
   display: flex;
   justify-content: space-between;
-  $dateButtonSize: 24px;
+  $dateButtonSize: 32px;
   @include innerspace(1rem);
 
   &__inner {
@@ -63,7 +63,7 @@
       justify-content: center;
       align-content: center;
 
-      @include font-size(7px);
+      @include font-size(12px);
       text-transform: uppercase;
       font-family: $roboto;
       font-weight: 500;
@@ -81,7 +81,7 @@
         padding-top: 2px;
         transition: all 0.5s;
         @include fontsmoothing();
-        @include font-size(7px);
+        @include font-size(8px);
       }
 
       &.hasEntry {
@@ -105,7 +105,7 @@
   }
 
   &__kebab {
-    @include size(24px);
+    @include size(32px);
     background: rgba(color('white'), 16%);
     border-radius: 50%;
     @include flex-center('both');

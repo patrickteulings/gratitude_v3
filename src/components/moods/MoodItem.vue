@@ -7,6 +7,7 @@
       <div class="moods-item__label" contenteditable="true" @keyup="handleLabelChange">
         {{ label }}
       </div>
+      <div class="moods-item__save" :class="{saving: isUpdating}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
     </div>
     <div class="moods-item-colors" :class="{ open: editColor }">
       <div v-for="color in colors" :key="color" class="moods-item-colors__item" :style="{backgroundColor: color}" @click="handleColorSelect(color)"></div>
@@ -16,7 +17,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from 'vue'
+import { defineComponent, ref, PropType, SetupContext } from 'vue'
+import store from '@/store'
+
+import { db } from '@/config/firebaseConfigTypeScript'
 
 import { IMood } from '@/types/Mood'
 
@@ -27,24 +31,37 @@ export default defineComponent({
       type: Object as PropType<IMood>
     }
   },
-  setup (props) {
+  setup (props, context: SetupContext) {
     const mood: IMood = (props.moodData !== undefined) ? props.moodData : {}
     const { label } = mood
     const editColor = ref(false)
     const colors = ['#013439', '#CFB495', '#547276', '#A7A233']
     const selectedColor = ref((props.moodData) ? props.moodData.value : '#DFA3CF')
+    const isUpdating = ref(false)
 
     const handleItemClick = (el) => {
       editColor.value = !editColor.value
     }
 
+    const handleUpdate = () => {
+      isUpdating.value = true
+      const payload = { mood: mood, user: store.getters['userStore/getUser'] }
+
+      store.dispatch('moodStore/updateMood', payload).then(() => {
+        console.log('responseDone,')
+        isUpdating.value = false
+      })
+    }
+
     const handleColorSelect = (color: string) => {
       selectedColor.value = color
       mood.value = color
+      // handleUpdate()
     }
 
     const handleLabelChange = (e: {target: HTMLDivElement}) => {
       mood.label = e.target.innerText
+      handleUpdate()
     }
 
     return {
@@ -55,7 +72,8 @@ export default defineComponent({
       editColor,
       handleItemClick,
       handleColorSelect,
-      handleLabelChange
+      handleLabelChange,
+      isUpdating
     }
   }
 })

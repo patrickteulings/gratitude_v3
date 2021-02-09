@@ -4,9 +4,10 @@
       <div class="section__inner">
         <div>
           <div v-if="moods.length">
-            <mood-item v-for="mood in moods" :key="mood.id" :moodData="mood" />
+            <mood-item v-for="mood in moods" :key="mood.id" :moodData="mood" @update="handleMoodUpdate(mood)" />
           </div>
         </div>
+        <div @click="handleSubmit()">DONE!</div>
       </div>
     </section>
     <section class="moods-edit-illustration" role="presentation">
@@ -18,13 +19,16 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 // Core
 import { reactive, toRefs, defineComponent, onMounted, onBeforeUnmount } from 'vue'
 import store from '@/store'
 
 // Components
 import MoodItem from '@/components/moods/MoodItem.vue'
+
+// Types
+import { IMood } from '@/types/Mood'
 
 export default defineComponent({
   components: {
@@ -36,6 +40,15 @@ export default defineComponent({
       moods: store.getters['moodStore/getMoods']
     })
 
+    const handleSubmit = () => {
+      console.log('handleSubmit')
+    }
+
+    const handleMoodUpdate = (updatedMood: IMood) => {
+      const payload = { mood: updatedMood, user: store.getters['userStore/getUser'] }
+      store.dispatch('moodStore/updateMood', payload)
+    }
+
     onMounted(() => {
       document.body.classList.add('pampas')
     })
@@ -45,7 +58,9 @@ export default defineComponent({
     })
 
     return {
-      ...toRefs(state)
+      ...toRefs(state),
+      handleMoodUpdate,
+      handleSubmit
     }
   }
 })

@@ -6,9 +6,11 @@ import { db } from '@/config/firebaseConfigTypeScript'
 
 // Interfaces
 import { IMood } from '@/types/Mood'
+import { IUser } from '@/types/UserType'
 
 // Constants
 const ADD_SINGLE_MOOD = 'ADD_SINGLE_MOOD'
+const UPDATE_SINGLE_MOOD = 'UPDATE_SINGLE_MOOD'
 
 export const MoodStore = {
   namespaced: true,
@@ -17,8 +19,11 @@ export const MoodStore = {
   }),
   mutations: {
     ADD_SINGLE_MOOD: (state: any, mood: IMood) => {
-      console.log('moods', mood)
       state.moods.push(mood)
+    },
+    UPDATE_SINGLE_MOOD: (state: any, mood: IMood) => {
+      let el = state.moods.find(item => item.id === mood.id)
+      el = mood
     }
   },
   actions: {
@@ -29,6 +34,20 @@ export const MoodStore = {
     loadMoods: (context: any, user: any) => {
       const ref = db.collection('users').doc(user.uid).collection('settings').doc('moods').collection('items')
       return ref.get()
+    },
+
+    updateMood: (context: any, payload: any): Promise<any> => {
+      const { mood, user } = payload
+      const moodReference = db.collection('users').doc(user.uid).collection('settings').doc('moods').collection('items')
+
+      return moodReference.doc(mood.id).set(mood).then(() => {
+        // UPDATE STORE HERE
+        context.commit(UPDATE_SINGLE_MOOD)
+
+        return true
+      }).catch(() => {
+        return false
+      })
     }
   },
   getters: {

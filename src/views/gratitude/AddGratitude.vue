@@ -175,8 +175,10 @@ export default defineComponent({
 
     const getWeather = () => {
       const weather = store.getters['gratitudeStore/getWeather']
+      console.log(weather)
+      return { temp: '', icon: '' }
       //
-      return { temp: Math.round(weather.temp), icon: `wi wi-owm-${weather.weatherID}` }
+      // return { temp: Math.round(weather.temp), icon: `wi wi-owm-${weather.weatherID}` }
     }
     // Well, get the formatted date
     const getDate = (): string => useDate().getDefaultFormat(new Date())

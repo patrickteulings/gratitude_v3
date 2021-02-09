@@ -3,13 +3,14 @@
   justify-content: space-between;
   align-items: center;
   @include innerspace(1rem);
-  // background-color: darken(#014B52, 5%);
 }
 
 .topBarEdit {
   @include innerspace(1rem);
   display: flex;
   align-items: center;
+  @include position(fixed, 0, 0);
+  width: 100%;
 
   &__title {
     flex-grow: 2;

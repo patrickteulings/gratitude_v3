@@ -1,4 +1,5 @@
 .moods-edit {
+  padding-top: 70px;
   background-color: color('pampas');
 
   > section {
@@ -29,9 +30,10 @@ body.pampas {
 
   &__color-dot {
     display: block;
-    @include size(1rem);
-    border-radius: 20px;
-    @include position(relative, auto);
+    @include size(1.2rem);
+    border-radius: 32px;
+    @include position(relative, auto, 2px);
+    border: 2px solid color('white');
   }
 
   &__label {
@@ -45,6 +47,19 @@ body.pampas {
     &:focus {
       outline: none;
       text-decoration: underline;
+    }
+  }
+
+  &__save {
+    opacity: 0;
+    svg {
+      @include size(16px);
+      * {
+        stroke: color('primary');
+      }
+    }
+    &.saving {
+      opacity: 0.6;
     }
   }
 }
