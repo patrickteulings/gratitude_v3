@@ -39,10 +39,11 @@ export default defineComponent({
     const selectedColor = ref((props.moodData) ? props.moodData.value : '#DFA3CF')
     const isUpdating = ref(false)
 
-    const handleItemClick = (el) => {
+    const handleItemClick = () => {
       editColor.value = !editColor.value
     }
 
+    // Save Updates to Database
     const handleUpdate = () => {
       isUpdating.value = true
       const payload = { mood: mood, user: store.getters['userStore/getUser'] }
@@ -53,12 +54,14 @@ export default defineComponent({
       })
     }
 
+    // Update the color visually and in Mood object
     const handleColorSelect = (color: string) => {
       selectedColor.value = color
       mood.value = color
-      // handleUpdate()
+      handleUpdate()
     }
 
+    // Update the label value, on every keypress (UP)
     const handleLabelChange = (e: {target: HTMLDivElement}) => {
       mood.label = e.target.innerText
       handleUpdate()

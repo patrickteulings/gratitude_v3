@@ -4,7 +4,7 @@
       <div class="section__inner">
         <div>
           <div v-if="moods.length">
-            <mood-item v-for="mood in moods" :key="mood.id" :moodData="mood" @update="handleMoodUpdate(mood)" />
+            <mood-item v-for="mood in moods" :key="mood.id" :moodData="mood" />
           </div>
         </div>
         <div @click="handleSubmit()">DONE!</div>
@@ -40,15 +40,6 @@ export default defineComponent({
       moods: store.getters['moodStore/getMoods']
     })
 
-    const handleSubmit = () => {
-      console.log('handleSubmit')
-    }
-
-    const handleMoodUpdate = (updatedMood: IMood) => {
-      const payload = { mood: updatedMood, user: store.getters['userStore/getUser'] }
-      store.dispatch('moodStore/updateMood', payload)
-    }
-
     onMounted(() => {
       document.body.classList.add('pampas')
     })
@@ -58,9 +49,7 @@ export default defineComponent({
     })
 
     return {
-      ...toRefs(state),
-      handleMoodUpdate,
-      handleSubmit
+      ...toRefs(state)
     }
   }
 })
