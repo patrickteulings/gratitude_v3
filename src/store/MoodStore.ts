@@ -17,15 +17,18 @@ export const MoodStore = {
   state: reactive({
     moods: []
   }),
+
   mutations: {
     ADD_SINGLE_MOOD: (state: any, mood: IMood) => {
       state.moods.push(mood)
     },
+
     UPDATE_SINGLE_MOOD: (state: any, mood: IMood) => {
       let el = state.moods.find(item => item.id === mood.id)
       el = mood
     }
   },
+
   actions: {
     addSingleMood: (context: any, mood: IMood) => {
       context.commit(ADD_SINGLE_MOOD, mood)
@@ -41,15 +44,13 @@ export const MoodStore = {
       const moodReference = db.collection('users').doc(user.uid).collection('settings').doc('moods').collection('items')
 
       return moodReference.doc(mood.id).set(mood).then(() => {
-        // UPDATE STORE HERE
         context.commit(UPDATE_SINGLE_MOOD)
-
-        return true
       }).catch(() => {
-        return false
+        console.log('Error - updateMood')
       })
     }
   },
+
   getters: {
     getMoods: (state) => state.moods
   }

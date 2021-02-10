@@ -39,6 +39,8 @@ export default defineComponent({
   },
 
   setup (props) {
+    const moods = store.getters['moodStore/getMoods']
+
     const getGratitudeData = (): IGratitude => {
       return { ...props.gratitudeData.data }
     }
@@ -46,9 +48,11 @@ export default defineComponent({
     const getReadableDate = (_date: Date): string => useDate().formatDateToWordsWithLimit(_date, 10)
 
     const getMoodStyle = (_gratitude) => {
+      const mood = moods.find((mood) => mood.id === _gratitude.mood.id)
+
       const styleObj = {
-        background: { backgroundColor: (_gratitude.mood) ? _gratitude.mood.value : '#2FD9D9' },
-        color: { color: (_gratitude.mood) ? _gratitude.mood.value : '#2FD9D9' }
+        background: { backgroundColor: (mood) ? mood.value : '#2FD9D9' },
+        color: { color: (mood) ? mood.value : '#2FD9D9' }
       }
       return styleObj
     }
