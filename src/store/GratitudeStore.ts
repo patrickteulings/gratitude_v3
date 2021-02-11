@@ -53,13 +53,14 @@ export const GratitudeStore = {
 
     UPDATE_GRATITUDE: (state: any, payload: IGratitudeWrapper): void => {
       // Now update local store
+      const userID = (payload.data && payload.data.user) ? payload.data.user.uid : ''
+      const docRef = db.collection('users').doc(userID).collection('gratitudes').doc(payload.id)
       const el = state.gratitudes.find(item => item.id === payload.id)
+
       if (el) el.data.title = payload.data.title
       if (el) el.data.body = payload.data.body
       if (el) el.data.mood = payload.data.mood
 
-      const userID = (payload.data && payload.data.user) ? payload.data.user.uid : ''
-      const docRef = db.collection('users').doc(userID).collection('gratitudes').doc(payload.id)
       docRef.set(payload.data).then((result: any) => {
         console.log('success', result)
       }).catch((error) => {
