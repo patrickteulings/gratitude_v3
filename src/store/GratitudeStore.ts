@@ -13,6 +13,13 @@ const SET_CURRENT_LOCATION = 'SET_CURRENT_LOCATION'
 const SET_CURRENT_WEATHER = 'SET_CURRENT_WEATHER'
 const SAVE_GRATITUDE = 'SAVE_GRATITUDE'
 
+interface IGratitudeState {
+  gratitudes: Array<IGratitudeWrapper>;
+  location: ILocation | null;
+  weather: IWeather | null;
+  currentGratitude: IGratitudeWrapper | null;
+}
+
 export const GratitudeStore = {
   namespaced: true,
   state: reactive({
@@ -24,15 +31,15 @@ export const GratitudeStore = {
 
 
   mutations: {
-    ADD_MULTIPLE_GRATITUDES: (state: any, payload: Array<IGratitude>) => {
+    ADD_MULTIPLE_GRATITUDES: (state: IGratitudeState, payload: Array<IGratitude>) => {
       console.log(state.gratitudes)
     },
 
-    ADD_GRATITUDE: (state: any, payload: IGratitude) => {
+    ADD_GRATITUDE: (state: IGratitudeState, payload: IGratitudeWrapper) => {
       state.gratitudes.push(payload)
     },
 
-    SAVE_GRATITUDE: (state, payload: IGratitude) => {
+    SAVE_GRATITUDE: (state: IGratitudeState, payload: IGratitude) => {
       const userID = (payload.user !== undefined) ? payload.user.uid : ''
       const ref = db.collection('users').doc(userID).collection('gratitudes')
 
@@ -51,7 +58,7 @@ export const GratitudeStore = {
       })
     },
 
-    UPDATE_GRATITUDE: (state: any, payload: IGratitudeWrapper): void => {
+    UPDATE_GRATITUDE: (state: IGratitudeState, payload: IGratitudeWrapper): void => {
       // Now update local store
       const userID = (payload.data && payload.data.user) ? payload.data.user.uid : ''
       const docRef = db.collection('users').doc(userID).collection('gratitudes').doc(payload.id)
@@ -70,11 +77,11 @@ export const GratitudeStore = {
       })
     },
 
-    SET_CURRENT_LOCATION: (state: any, payload: ILocation) => {
+    SET_CURRENT_LOCATION: (state: IGratitudeState, payload: ILocation) => {
       state.location = payload
     },
 
-    SET_CURRENT_WEATHER: (state: any, payload: IWeather) => {
+    SET_CURRENT_WEATHER: (state: IGratitudeState, payload: IWeather) => {
       console.log('SET_CURRENT_WEATHER', payload)
       state.weather = payload
     }
