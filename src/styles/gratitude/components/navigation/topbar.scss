@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   @include position(fixed, 0, 0);
-  width: 100%;
+  width: 100vw;
 
   &__title {
     flex-grow: 2;
