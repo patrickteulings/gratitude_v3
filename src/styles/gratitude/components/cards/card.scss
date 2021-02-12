@@ -18,7 +18,7 @@
   &__habits {
     @include innerspace(2rem, 1rem);
     padding-bottom: 0.5rem;
-    background: rgba(color('white'), 70%);
+    background: rgba(#E6EBEB, 100%);
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
   }

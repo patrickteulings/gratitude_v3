@@ -1,5 +1,4 @@
 // Core
-import { computed } from 'vue'
 import store from '@/store'
 
 import isSameDay from 'date-fns/isSameDay'
@@ -44,12 +43,13 @@ export const useGratitudeFilters = () => {
   const getLastWeeksGratitude = (_date: Date = new Date(), _weeksToSubtract = 1) => {
     const duplicate: Array<IGratitudeWrapper> = [...allGratitudes]
     const pastDate = subWeeks(_date, _weeksToSubtract)
+    console.log({ pastDate })
     const filteredGratitudes: IGratitudeWrapper[] = []
 
     duplicate.map((gratitudewrapper: IGratitudeWrapper) => {
       const { data: gratitude } = gratitudewrapper
       const dayStamp = gratitude.dayStamp.toDate()
-
+      console.log(dayStamp)
       if (isSameDay(dayStamp, pastDate)) filteredGratitudes.push(gratitudewrapper)
     })
 

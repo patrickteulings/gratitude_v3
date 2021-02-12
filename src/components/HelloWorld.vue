@@ -13,7 +13,7 @@
       </section>
       <section class="section">
         <div class="section__inner">
-          <MonthsAgo :currentDate="thisDayAMonthAgo" @onclicked="goToDetailPage" />
+          <highlights />
         </div>
       </section>
       <section class="section">
@@ -41,7 +41,7 @@ import router from '@/router'
 import DateBar from '@/components/ui/DateBar.vue'
 import Hero from '@/components/hero/hero.vue'
 import GratitudeCard from '@/components/cards/GratitudeCard.vue'
-import MonthsAgo from '@/components/toast/MonthsAgo.vue'
+import Highlights from '@/components/home/Highlights.vue'
 
 // Composables
 import useDate from '@/use/useDate'
@@ -63,8 +63,8 @@ export default defineComponent({
   components: {
     DateBar,
     GratitudeCard,
-    MonthsAgo,
-    Hero
+    Hero,
+    Highlights
   },
 
   setup () {

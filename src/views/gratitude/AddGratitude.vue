@@ -29,7 +29,7 @@
     </section>
     <section class="section addGratitude__actions">
       <div class="section__inner">
-        <button class="btn" :class="{ 'isSubmitting': isSubmitting }" @click="submitNewGratitude()" :disabled="isButtonDisabled">
+        <button class="btn btn--shadowed" :class="{ 'isSubmitting': isSubmitting }" @click="submitNewGratitude()" :disabled="isButtonDisabled">
           <span v-if="!submitted && !isSubmitting">Add Gratitude</span>
           <span v-else-if="submitted && !isSubmitting">Update Gratitude</span>
           <div v-else class="spinnerContainer">
@@ -39,7 +39,7 @@
           </div>
 
         </button>
-        <button v-if="submitted" class="btn btn--secondary" @click="clearGratitude()">Clear / new</button>
+        <button v-if="submitted" class="btn btn--secondary" @click="clearGratitude()"><span>Clear / new</span></button>
         <!-- <span v-if="isSubmitting === true">loading...</span> -->
       </div>
     </section>

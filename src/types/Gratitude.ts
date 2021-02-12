@@ -28,7 +28,6 @@ export interface IAddresscomponents {
   types: Array<string>;
 }
 
-
 export interface IResponse {
   plus_code?: any | null;
   results: Array<IAddresscomponents> | null;
