@@ -29,7 +29,7 @@ export const useGratitudeFilters = () => {
     const duplicate: Array<IGratitudeWrapper> = [...allGratitudes]
     const pastDate = subMonths(_date, _monthsToSubtract)
     const filteredGratitudes: IGratitudeWrapper[] = []
-    console.log(pastDate)
+
     duplicate.map((gratitudewrapper: IGratitudeWrapper) => {
       const { data: gratitude } = gratitudewrapper
       const dayStamp = gratitude.dayStamp.toDate()
@@ -43,13 +43,12 @@ export const useGratitudeFilters = () => {
   const getLastWeeksGratitude = (_date: Date = new Date(), _weeksToSubtract = 1) => {
     const duplicate: Array<IGratitudeWrapper> = [...allGratitudes]
     const pastDate = subWeeks(_date, _weeksToSubtract)
-    console.log({ pastDate })
     const filteredGratitudes: IGratitudeWrapper[] = []
 
     duplicate.map((gratitudewrapper: IGratitudeWrapper) => {
       const { data: gratitude } = gratitudewrapper
       const dayStamp = gratitude.dayStamp.toDate()
-      console.log(dayStamp)
+
       if (isSameDay(dayStamp, pastDate)) filteredGratitudes.push(gratitudewrapper)
     })
 

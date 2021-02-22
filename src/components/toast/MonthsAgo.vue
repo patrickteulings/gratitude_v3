@@ -30,7 +30,6 @@ export default defineComponent({
   },
 
   setup (props, { emit }: SetupContext) {
-    console.log('SETUP')
     const propsDate = ref(new Date(props.currentDate))
     const pastEntries = ref<IGratitudeWrapper[]>([])
     const getDate = (date): string => useDate().getDefaultFormat(date.toDate())
@@ -41,7 +40,6 @@ export default defineComponent({
 
     const handleDate = () => {
       pastEntries.value = useGratitudeFilters().getLastWeeksGratitude(propsDate.value)
-      console.log('getLastWeeksGratitude ', useGratitudeFilters().getLastWeeksGratitude(propsDate.value))
     }
 
     onMounted(() => {
@@ -52,12 +50,9 @@ export default defineComponent({
 
 
     watch(props, (props) => {
-      console.log('SUBWEEKS')
       propsDate.value = new Date(props.currentDate)
       pastEntries.value = []
       handleDate()
-      console.log('getLastMonthsGratitude ', useGratitudeFilters().getLastMonthsGratitude(propsDate.value))
-      console.log('getLastWeeksGratitude ', useGratitudeFilters().getLastWeeksGratitude(propsDate.value))
       const el = useGratitudeFilters().getLastMonthsGratitude(propsDate.value)
 
       el.forEach((gratitude) => {

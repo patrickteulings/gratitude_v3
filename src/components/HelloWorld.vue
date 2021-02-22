@@ -13,13 +13,11 @@
       </section>
       <section class="section">
         <div class="section__inner">
-          <highlights />
-        </div>
-      </section>
-      <section class="section">
-        <div class="section__inner">
           <div v-if="filteredGratitudes.length">
-            <GratitudeCard style="position: relative; z-index: 2;" v-for="gratitude in filteredGratitudes" :key="gratitude.id" :gratitudeData="gratitude" @click="goToDetailPage(gratitude)" />
+            <template v-for="(gratitude, index) in filteredGratitudes" :key="gratitude.id">
+              <highlights v-if="index === 1" />
+              <GratitudeCard style="position: relative; z-index: 2;" :gratitudeData="gratitude" @click="goToDetailPage(gratitude)" />
+            </template>
           </div>
           <div v-else class="home__empty" style="text-align: center;">
             <span class="empty__icon">🤷🏼‍♀️</span>
@@ -139,7 +137,6 @@ export default defineComponent({
     })
 
     onMounted(() => {
-      console.log('MOUNTED', store.getters['gratitudeStore/getGratitudes'])
       state.filteredGratitudes = []
       state.filteredGratitudes = store.getters['gratitudeStore/getGratitudes']
       state.filteredGratitudes = gratitudeList()

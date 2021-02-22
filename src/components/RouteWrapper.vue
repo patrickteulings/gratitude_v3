@@ -54,7 +54,6 @@ function handleRejection (p) {
 }
 
 async function waitForAll (...ps) {
-  console.log('started...')
   if (store.getters['gratitudeStore/getGratitudes'].length) return Promise.resolve()
   return Promise.all(ps.map(handleRejection))
 }

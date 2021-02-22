@@ -99,7 +99,6 @@ export default defineComponent({
 
     const handleRouteChange = (route) => {
       const obj = useMenuState(route)
-      console.log('USEMENUSTATE', obj)
 
       fullMenu.value = obj.fullMenu
     }

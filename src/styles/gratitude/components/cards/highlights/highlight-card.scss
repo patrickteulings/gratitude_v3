@@ -1,0 +1,41 @@
+.highlights {
+  width: calc(100% - 1rem);
+  // overflow: hidden;
+  // @include innerspace(0, 1rem);
+  padding-left: 1rem;
+  &__inner {
+    // @include innerspace(1rem, 1rem);
+    overflow: scroll;
+    scroll-snap-type: x mandatory;
+    display: flex;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__item {
+    @include innerspace(1rem);
+    border-radius: 5px;
+    background: #038f9d;
+    min-width: 60%;
+    scroll-snap-align: end;
+
+    &:not(:last-child) {
+      margin-right: 0.5rem;
+      scroll-snap-align: start;
+    }
+  }
+
+  &__title {
+    @include font-size(24px);
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    margin-bottom: 0;
+  }
+
+  &__body {
+    font-family: $sans-font-face;
+    @include font-size(14px);
+    line-height: 16px;
+  }
+}

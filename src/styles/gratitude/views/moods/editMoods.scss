@@ -31,8 +31,8 @@ body.pampas {
   &__color-dot {
     display: block;
     @include size(1.2rem);
-    border-radius: 32px;
-    @include position(relative, auto, 2px);
+    border-radius: 2.4rem;
+    @include position(relative, auto, 1px);
     border: 2px solid color('white');
   }
 

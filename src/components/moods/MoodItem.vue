@@ -49,7 +49,6 @@ export default defineComponent({
       const payload = { mood: mood, user: store.getters['userStore/getUser'] }
 
       store.dispatch('moodStore/updateMood', payload).then(() => {
-        console.log('responseDone,')
         isUpdating.value = false
       })
     }

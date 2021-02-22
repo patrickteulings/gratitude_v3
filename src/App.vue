@@ -75,7 +75,7 @@ export default defineComponent({
     // If we have a location, also get the weather!!
     watch([response, latitude], ([first, firstLat], [second, sencondLat]) => {
       let cityName = ''
-      console.log('lat:', response)
+
       if (response !== null) {
         const resp = response.value as IResponse
         if (resp.results) {
@@ -90,7 +90,6 @@ export default defineComponent({
         const location = { coordinates: { latitude: latitude.value, longitude: longitude.value }, city: cityName }
 
         getWeather({ coords: { latitude: latitude.value, longitude: longitude.value } }).then((result) => {
-          console.log('App.vue - getWeather - results', result)
           const weather = {
             temp: result.main.temp,
             feelsLike: result.main.feels_like,
@@ -101,7 +100,7 @@ export default defineComponent({
           }
           store.dispatch('gratitudeStore/setWeather', weather)
         })
-        // console.log(getWeather({ coords: { latitude: latitude.value, longitude: longitude.value } }))
+
         store.dispatch('gratitudeStore/setLocation', location)
       }
 

@@ -10,8 +10,8 @@
     position: relative;
 
     &.hasHabits {
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
+      // border-bottom-left-radius: 0;
+      // border-bottom-right-radius: 0;
     }
   }
 
@@ -42,7 +42,8 @@
     color: color('primary');
     @include font-size(40px);
     word-break: break-all;
-    line-height: 1.4em;
+    line-height: 1em;
+    margin-top: 0.5em;
   }
 
   &__body {

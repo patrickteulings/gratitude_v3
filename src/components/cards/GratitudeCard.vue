@@ -7,15 +7,15 @@
           <span :style="getMoodStyle(gratitude).color">{{ getReadableDate(gratitude.timeStamp.toDate()) }}</span>
         </span>
         <span class="mood__weather" v-if="gratitude.weather"><i :class="getWeatherIcon(gratitude)"></i></span></small>
-      <h1 class="gratitudeCard__title">{{ gratitude.title }}</h1>
+      <h3 class="gratitudeCard__title">{{ gratitude.title }}</h3>
       <div class="gratitudeCard__body" v-html="gratitude.body"></div>
       <div class="gratitudeCard__tags">
         <div class="tag">Trust</div>
       </div>
     </div>
-    <div class="gratitudeCard__habits">
+    <!-- <div class="gratitudeCard__habits">
       habits
-    </div>
+    </div> -->
   </div>
 </template>
 
