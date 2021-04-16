@@ -109,11 +109,11 @@ export default defineComponent({
         }
         const location = {
           coordinates: { latitude: latitude.value, longitude: longitude.value },
-          city: cityName,
+          city: cityName
         }
 
         getWeather({
-          coords: { latitude: latitude.value, longitude: longitude.value },
+          coords: { latitude: latitude.value, longitude: longitude.value }
         }).then((result) => {
           const weather = {
             temp: result.main.temp,
