@@ -75,10 +75,10 @@ export default defineComponent({
     NavigationDrawer,
     LoginForm,
     SplashScreen,
-    RouteWrapper,
+    RouteWrapper
   },
 
-  setup() {
+  setup () {
     const { user, loading, error } = useAuth()
     const loginState = useLogin()
     const {
@@ -86,7 +86,7 @@ export default defineComponent({
       longitude,
       msg,
       response,
-      locationLoading = false,
+      locationLoading = false
     } = useLocation()
     const { weatherResponse, getWeather, weatherLoading } = useWeather()
     // const { latitude, longitude, msg, response, locationLoading = false } = useWeather()
@@ -121,7 +121,7 @@ export default defineComponent({
             weatherID: result.weather[0].id,
             weatherIcon: result.weather[0].icon,
             description: result.weather[0].main,
-            descriptionLong: result.weather[0].description,
+            descriptionLong: result.weather[0].description
           }
           store.dispatch('gratitudeStore/setWeather', weather)
         })
@@ -145,9 +145,9 @@ export default defineComponent({
       weatherLoading,
       weatherResponse,
       error: computed(() => (loginState.error || error).value),
-      logout: loginState.logout,
+      logout: loginState.logout
     }
-  },
+  }
 })
 </script>
 
@@ -156,20 +156,20 @@ export default defineComponent({
   overflow-x: hidden
 }
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif
-  -webkit-font-smoothing: antialiased
-  -moz-osx-font-smoothing: grayscale
-  text-align: center
-  color: #2c3e50
-  overflow-x: hidden
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  overflow-x: hidden;
 }
 
 #nav {
-  padding: 30px
+  padding: 30px;
 
   a {
-    font-weight: bold
-    color: #2c3e50
+    font-weight: bold;
+    color: #2c3e50;
 
     &.router-link-exact-active {
       color: #42b983
