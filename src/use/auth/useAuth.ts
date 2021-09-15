@@ -2,7 +2,7 @@ import { toRefs, reactive } from 'vue'
 
 import { fire } from '@/config/firebaseConfigTypeScript'
 import store from '@/store'
-import { IUser } from '@/types/UserType.ts'
+import { IUser } from '@/types/UserType'
 
 interface IState {
   user: IUser | null;

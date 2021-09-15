@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="contentEditableField" @keyup="handleKeyUp" @keydown="handleKeyDown" @click="handleFocus" :class="[equalToPlaceHolder ? 'placeholder' : '', getClassname()]" contenteditable="true" v-html="content"></div>
+    <div class="contentEditableField" @keyup="handleKeyUp" @keydown="handleKeyDown" @input="handleKeyUp" @click="handleFocus" :class="[equalToPlaceHolder ? 'placeholder' : '', getClassname()]" contenteditable="true" v-html="content"></div>
   </div>
 </template>
 
@@ -63,11 +63,14 @@ const ContentEditable = defineComponent({
 
       // Reset to placeholder if no text is entered
       if (!el.innerText.length) el.innerText = beasty.value
-
+      console.log('CAPS')
       // handles classname if there is / is not any text / placeholder
       equalToPlaceHolder.value = (el.innerText === beasty.value)
+      context.emit('update-content', el.innerHTML)
 
-      context.emit('update-content', el.innerText)
+      // @todo
+      // Contenteditable doesn't recognise it when an emoji is inserted. It does not have an 'onInput' event.
+      // OIf we don't type anything after an emoji, to trigger the content update, the emoji wont be saved
     }
 
     onMounted(() => {

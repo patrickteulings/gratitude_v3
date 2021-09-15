@@ -19,8 +19,8 @@
     </section>
     <section class="section detail__body">
       <div class="section__inner">
-        <div contenteditable="true" class="contenteditableBody contenteditableBody--edit paragraph" :class="{'ghosted': doneDeleting}" v-html="original.data.body" @keyUp="handleBodyEdit"></div>
-    </div>
+        <div contenteditable="true" class="contenteditableBody contenteditableBody--edit paragraph" :class="{'ghosted': doneDeleting}" v-html="original.data.body" @input="handleBodyEdit"></div>
+      </div>
     </section>
     <section class="section edit__dropdown">
       <div class="section__inner">
@@ -147,7 +147,7 @@ export default defineComponent({
     }
 
     const handleBodyEdit = (e) => {
-      editedBody = e.target.innerText
+      editedBody = e.target.innerHTML
     }
 
     const handleMoodEdit = (mood: IMood) => {
